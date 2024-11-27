@@ -176,7 +176,8 @@
 		<button>></button>
 	</div>
 	<ul class="Genre">
-		<h1>액션 영화</h1>
+		<h1>액션</h1>
+		
 		<li><img src="img/1.webp"/></li>
 		<li><img src="img/2.webp"/></li>
 		<li><img src="img/3.webp"/></li>
@@ -186,7 +187,79 @@
 	</ul>
 	<br>
 	<ul class="Genre">
-		<h1>공포 영화</h1>
+		<h1>애니메이션</h1>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+	</ul>
+	<ul class="Genre">
+		<h1>판타지</h1>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+	</ul>
+	<ul class="Genre">
+		<h1>공상과학</h1>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+	</ul>
+	<ul class="Genre">
+		<h1>범죄</h1>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+	</ul>
+	<ul class="Genre">
+		<h1>스릴러</h1>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+	</ul>
+	<ul class="Genre">
+		<h1>코미디</h1>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+	</ul>
+	<ul class="Genre">
+		<h1>역사</h1>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+	</ul>
+	<ul class="Genre">
+		<h1>로맨스</h1>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+		<li><img src="img/1.webp"/></li>
+		<li><img src="img/2.webp"/></li>
+		<li><img src="img/3.webp"/></li>
+	</ul>
+	<ul class="Genre">
+		<h1>드라마</h1>
 		<li><img src="img/1.webp"/></li>
 		<li><img src="img/2.webp"/></li>
 		<li><img src="img/3.webp"/></li>

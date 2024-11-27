@@ -41,7 +41,7 @@ def get_movie_audience_reviews(movie_name, top):
 
 def get_movie_critic_reviews(movie_name, top):
     movie_name = accurate_movie_name(movie_name)
-    url_template = 'https://www.rottentomatoes.com/m/{}/reviews?type=top_critics'
+    url_template = 'https://www.rottentomatoes.com/m/{}/reviews'
     name = []
     pub = []
     propic = []
@@ -55,11 +55,11 @@ def get_movie_critic_reviews(movie_name, top):
     if soup.select_one("div.review-row") == None:
         return None
     for review in soup.select("div.review-row"):
-        name.append(review.select_one("div.review-data > div.reviewer-name-and-publication > a:nth-child(1)").get_text().replace("\n", "").strip()),
-        pub.append(review.select_one("div.review-data > div.reviewer-name-and-publication > a:nth-child(2)").get_text().replace("\n", "").strip()),
+        name.append(review.select_one("div.review-data a.display-name").get_text().replace("\n", "").strip()),
+        pub.append(review.select_one("div.review-data a.publication").get_text().replace("\n", "").strip()),
         propic.append(review.select_one("div.review-data > img").attrs['src'].strip()),
         text.append(review.select_one("div.review-text-container > p:nth-child(1)").get_text().strip()),
-        score.append(review.select_one("div.review-data > score-icon-critics").attrs['sentiment'].strip())
+        score.append(review.select_one("score-icon-critics").attrs['sentiment'].strip())
         i+=1
         if i > top-1 :
             break

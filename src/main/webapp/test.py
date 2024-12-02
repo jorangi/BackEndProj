@@ -1,29 +1,21 @@
-import ssl
-import urllib.parse
-import urllib.request
-import json
+from googleapiclient.discovery import build
 
-url = "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation"
+# YouTube API 키 설정
+api_key = 'AIzaSyCETnOTrU6yvCTLFzIAgnUTmo-7dgE232Q'  # API 키를 여기에 입력하세요
 
-context = ssl._create_unverified_context()
+# YouTube API 클라이언트 설정
+youtube = build('youtube', 'v3', developerKey=api_key)
 
-client_id = "ytzb1tfff5"
-client_secret = "FBy8BwDwoL6zlhTB4b8afzrRRwDfbanWYeG4utKw"
-source_language = "en"
-target_language = "ko"
-source_text = "I think it''s a career peak for [Bong Joon-ho]."
+# 특정 검색어로 검색
+search_query = "The Shawshank Redemption Office Trailer"  # 원하는 검색어로 바꾸세요
+search_response = youtube.search().list(
+    q=search_query,
+    part='snippet',
+    maxResults=1  # 첫 번째 영상만 불러오기
+).execute()
 
-encText = urllib.parse.quote(source_text)
+# 첫 번째 검색 결과에서 영상 ID 추출
+video_id = search_response['items'][0]['id']['videoId']
 
-data = "source=%s&target=%s&text=%s" % (source_language, target_language, encText)
-request = urllib.request.Request(url)
-request.add_header("X-NCP-APIGW-API-KEY-ID", client_id)
-request.add_header("X-NCP-APIGW-API-KEY", client_secret)
-response = urllib.request.urlopen(request, data=data.encode("utf-8"), context=context)
-rescode = response.getcode()
-
-response_body = response.read()
-result_json = json.loads(response_body.decode("utf-8"))
-translated_text = result_json['message']['result']['translatedText']
-
-print(translated_text)
+# 첫 번째 영상의 링크
+iframe = f'<iframe width="560" height="315" src="https://www.youtube.com/embed/{video_id}" frameborder="0" allowfullscreen></iframe>'

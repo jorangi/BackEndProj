@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.io.*"%>
+    pageEncoding="UTF-8" import="java.io.*, java.util.ArrayList, dbconn.beans.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,17 +150,11 @@
 <title>Index</title>
 </head>
 <body>
+<jsp:useBean class="dbconn.beans.MovieDAO" id="movie" scope="session"/>
 <%
-	ProcessBuilder processBuilder = new ProcessBuilder("/Library/Frameworks/Python.framework/Versions/3.13/bin/python3", "/Users/sinjonghyeog/git/BackendProject/BackEndProject/src/main/webapp/RottenTomatoesReviews.py");
-	//ProcessBuilder processBuilder = new ProcessBuilder("/Library/Frameworks/Python.framework/Versions/3.13/bin/python3", "/Users/sinjonghyeog/git/BackendProject/BackEndProject/src/main/webapp/test.py");
-	processBuilder.environment().put("", "");
-	Process process = processBuilder.start();
-	
-	BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-	
-	String line;
-	while((line = reader.readLine()) != null){
-		System.out.println(line);
+	ArrayList<MovieDTO> movies = movie.selectMovieList();
+	for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Action\"]')")){
+		System.out.println(m.getTitle());
 	}
 %>
 	<jsp:include page="header.jsp"/>
@@ -177,95 +171,91 @@
 	</div>
 	<ul class="Genre">
 		<h1>액션</h1>
-		
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Action\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
 	<br>
 	<ul class="Genre">
 		<h1>애니메이션</h1>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Animation\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
+	<br>
 	<ul class="Genre">
-		<h1>판타지</h1>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<h1>판타지</h1><%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Fantasy\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
+	<br>
 	<ul class="Genre">
 		<h1>공상과학</h1>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Sci-Fi\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
+	<br>
 	<ul class="Genre">
 		<h1>범죄</h1>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Crime\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
+	<br>
 	<ul class="Genre">
 		<h1>스릴러</h1>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Thriller\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
+	<br>
 	<ul class="Genre">
 		<h1>코미디</h1>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Comedy\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
+	<br>
 	<ul class="Genre">
-		<h1>역사</h1>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<h1>어드벤쳐</h1>
+		<%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Adventure\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
+	<br>
 	<ul class="Genre">
 		<h1>로맨스</h1>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Romance\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
+	<br>
 	<ul class="Genre">
 		<h1>드라마</h1>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
-		<li><img src="img/1.webp"/></li>
-		<li><img src="img/2.webp"/></li>
-		<li><img src="img/3.webp"/></li>
+		<%
+			for(MovieDTO m : movie.selectMovie("select * from movieTbl where json_contains(genres, '[\"Drama\"]')")){
+				out.write("<li><img src="+m.getPoster()+"/></li>");
+			}
+		%>
 	</ul>
 	<button id="top">▴</button>
 	<jsp:include page="footer.jsp"/>
